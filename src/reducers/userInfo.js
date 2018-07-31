@@ -11,6 +11,14 @@ function userInfo(state = {
   lastLoginDate: '2018-03-30',
   remark: ''
 }, action) {
-  return state
+  switch (action.type) {
+    case "FETCH_USER_INFO_SUC":
+      return { 
+        ...state, 
+        ...action.response.data.historyLessonsList 
+      }
+    default:
+      return state
+  }
 }
 export default userInfo
