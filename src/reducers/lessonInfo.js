@@ -15,16 +15,10 @@ function currentLessonsList(state = [
       realName: '白帆',
       mid: '98676',
     },
-    enterRate: {
-      times: 3,
-      total: 21
-    },
+    enterRate: '3/21',
     homeworkSubmitRate: '0.6798',
     beCommenttedRate: '0.8798',
-    signRate: {
-      times: 3,
-      total: 21
-    },
+    signRate: '3/21',
     satisfyRate: '0.9014'
   },
   {
@@ -41,16 +35,10 @@ function currentLessonsList(state = [
       realName: '白帆',
       mid: '98676',
     },
-    enterRate: {
-      times: 20,
-      total: 21
-    },
+    enterRate: '20/21',
     homeworkSubmitRate: '0.6798',
     beCommenttedRate: '0.3798',
-    signRate: {
-      times: 16,
-      total: 21
-    },
+    signRate: '16/21',
     satisfyRate: '0.9714'
   }
 ], action) {
@@ -71,16 +59,10 @@ function historyLessonsList(state = [
       realName: '白帆',
       mid: '98676',
     },
-    enterRate: {
-      times: 17,
-      total: 21
-    },
+    enterRate: '17/21',
     homeworkSubmitRate: '0.6798',
     beCommenttedRate: '0.8798',
-    signRate: {
-      times: 3,
-      total: 21
-    },
+    signRate: '3/21',
     satisfyRate: '0.9814'
   }
 ], action) {

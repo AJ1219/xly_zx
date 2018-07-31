@@ -6,10 +6,9 @@ class DataTables extends Component {
   renderRate = (info, type) => {
     let className
     let rate
-    console.log(info, type)
     switch(type){
       case 'normal':
-        const { times, total } = info
+        const [ times, total ] = info.split('/')
         rate = times / total
         if (rate > 0.95) {
           className = 'good-rate'
