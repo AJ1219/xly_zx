@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import UserInfoBox from '../component/UserInfoBox/UserInfoBox'
 import OpTabs from '../component/OpTabs/OpTabs'
 
-import * as api from '../api/api'
+import userActions from '../actions/user'
+import lessonActions from '../actions/lesson'
 
 class Op extends Component {
   componentDidMount() {
     const mid = 33090002
-    const { dispatch: next } = this.props
-    api.fetchUserInfo(mid, next)
-    api.fetchLessonInfo(mid, next)
+    const { userActions, lessonActions } = this.props
+    userActions.fetchUserInfo({ mid })
+    lessonActions.fetchLessonInfo({ mid })
   }
   render() {
     const { 
@@ -43,7 +45,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatch
+    userActions: bindActionCreators(userActions, dispatch),
+    lessonActions: bindActionCreators(lessonActions, dispatch)
   }
 }
 
