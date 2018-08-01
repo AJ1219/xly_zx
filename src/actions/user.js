@@ -11,5 +11,22 @@ export default {
         }
       }
     }
+  },
+  fetchStudentList: (params) => {
+    return {
+      SERVER_API: {
+        type: ActionTypes.FETCH_STUDENT_LIST,
+        endpoint: '/getStudentList',
+        params: {
+        }
+      }
+    }
+  },
+  searchStudentListByOption: (params) => {
+    const { keyName, value } = params
+    return {
+      type: ActionTypes.SEARCH_STUDENT_LIST_BY_OPTION,
+      params: { keyName, value }
+    }
   }
 }

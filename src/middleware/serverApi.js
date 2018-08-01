@@ -49,22 +49,28 @@ const serverApi = store => next => action => {
     throw new Error('Specify a object params.');
   }
 
-  next({
+  function actionWith(data) {
+    const finalAction = { ...action, ...data }
+    delete finalAction.SERVER_API;
+    return finalAction;
+  }
+
+  next(actionWith({
     type: `${type}_REQ`
-  })
+  }))
 
   callServerApi({ endpoint, params })
   .then(res => {
-    next({
+    next(actionWith({
       type: `${type}_SUC`,
       response: res.data
-    })
+    }))
   })
   .catch(errMsg => {
-    next({
+    next(actionWith({
       type: `${type}_FAI`,
       errMsg
-    })
+    }))
   })
 }
 
