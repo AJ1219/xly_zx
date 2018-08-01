@@ -5,6 +5,7 @@ import './ButtonGroup.css'
 class ButtonGroup extends Component {
   render() {
     const { customButtons } = this.props
+    if (!customButtons) return null
     return (
       <div className="filter-buttons">
         <Button className="filter-button">汇总</Button>

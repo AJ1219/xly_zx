@@ -17,6 +17,7 @@ class UserInfoBox extends Component {
         remark
       } 
     } = this.props
+    if (!mid) return null
     return (
       <div className='basic-info-list'>
         <div className='basic-info-item'>{`学员编号: ${mid}`}</div>
