@@ -8,7 +8,7 @@ import OpTabs from '../component/OpTabs/OpTabs'
 import userActions from '../actions/user'
 import lessonActions from '../actions/lesson'
 
-class Op extends Component {
+class UserCenter extends Component {
   componentDidMount() {
     const mid = 33090002
     const { userActions, lessonActions } = this.props
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Op)
+export default connect(mapStateToProps, mapDispatchToProps)(UserCenter)
