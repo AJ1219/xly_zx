@@ -1,6 +1,8 @@
+import ActionTypes from '../const/ActionTypes'
+
 function userInfo(state = {}, action) {
   switch (action.type) {
-    case "FETCH_USER_INFO_SUC":
+    case `${ActionTypes.FETCH_USER_INFO}_SUC`:
       return { 
         ...state, 
         ...action.response.data

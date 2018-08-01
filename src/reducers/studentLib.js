@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
+import ActionTypes from '../const/ActionTypes'
 
 function list(state = [], action) {
   switch (action.type) {
-    case "FETCH_STUDENT_LIST_SUC":
+    case `${ActionTypes.FETCH_STUDENT_LIST}_SUC`:
       return [ 
         ...state, 
         ...action.response.data
@@ -13,7 +14,7 @@ function list(state = [], action) {
 }
 function filterOption(state = null, action) {
   switch (action.type) {
-    case "SEARCH_STUDENT_LIST_BY_OPTION":
+    case `${ActionTypes.SEARCH_STUDENT_LIST_BY_OPTION}`:
       return action.params
     default:
       return state
