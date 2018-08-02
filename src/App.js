@@ -11,8 +11,8 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/*<UserCenter />*/}
-        <StudentsLib />
+        <UserCenter />
+        {/*<StudentsLib />*/}
         {/*<ClassDetail />*/}
       </Provider>
     );

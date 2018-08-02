@@ -14,11 +14,13 @@ class UserCenter extends Component {
     const { userActions, lessonActions } = this.props
     userActions.fetchUserInfo({ mid })
     lessonActions.fetchLessonInfo({ mid })
+    lessonActions.fetchLessonSatisfiedInfo({ mid })
   }
   render() {
     const { 
       userInfo, 
-      lessonInfo
+      lessonInfo,
+      satisfiedInfo
     } = this.props
     return (
       <div>
@@ -26,6 +28,7 @@ class UserCenter extends Component {
         <OpTabs 
           userInfo={userInfo} 
           lessonInfo={lessonInfo}
+          satisfiedInfo={satisfiedInfo}
         />
       </div>
     )
@@ -36,10 +39,12 @@ const mapStateToProps = (state, ownProps) => {
   const {
     userInfo,
     lessonInfo,
+    satisfied
   } = state
   return {
     userInfo,
-    lessonInfo
+    lessonInfo,
+    satisfiedInfo: satisfied[33090002]
   }
 }
 
