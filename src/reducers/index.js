@@ -7,8 +7,8 @@ import classesDetail from './classesDetail'
 const rootReducer = combineReducers({
   lessonInfo,
   userInfo,
-  ui,
   studentLib,
-  classesDetail
+  classesDetail,
+  ui
 })
 export default rootReducer
