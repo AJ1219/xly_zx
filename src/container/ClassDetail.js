@@ -8,11 +8,8 @@ import LessonsTable from '../component/LessonsTable/LessonsTable'
 import ClassInfoBox from '../component/ClassInfoBox/ClassInfoBox'
 
 class ClassDetail extends Component {
-  state = {
-    classId: 33090002
-  }
   componentDidMount() {
-    const classId = this.state.classId
+    const classId = this.props.params.classId
     const { classActions } = this.props
     classActions.fetchClassInfo({ classId })
   }
@@ -21,11 +18,10 @@ class ClassDetail extends Component {
       basicInfo, 
       lessonList
     } = this.props
-    const classId = this.state.classId
     return (
       <div>
-        <ClassInfoBox data={basicInfo[classId]}/>
-        <LessonsTable list={lessonList[classId]} />
+        <ClassInfoBox data={basicInfo}/>
+        <LessonsTable list={lessonList} />
       </div>
     )
   }
@@ -38,9 +34,10 @@ const mapStateToProps = (state, ownProps) => {
       lessonList
     }
   } = state
+  const classId = ownProps.params.classId
   return {
-    basicInfo,
-    lessonList
+    basicInfo: basicInfo[classId],
+    lessonList: lessonList[classId]  
   }
 }
 

@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import { Table } from 'antd'
 import './DataTables.css'
+import { browserHistory } from 'react-router';
 
 class DataTables extends Component {
+  onRow = (record) => {
+    const router = this.props.router
+    return {
+      onClick: (e) => {
+        browserHistory.push(`/classDetail/${record.classInfo.id}`)
+      },
+    };
+  }
   renderRate = (info, type) => {
     let className
     let rate
@@ -90,11 +99,16 @@ class DataTables extends Component {
       <div className="table-group">
         <div className="table-item">
           <div className="table-item__title">在学课程</div>
-          <Table rowKey={record => record.classInfo.id} dataSource={currentLessonsList} columns={columns} pagination={false} bordered />
+          <Table 
+            onRow={this.onRow}
+            rowKey={record => record.classInfo.id} 
+            dataSource={currentLessonsList} columns={columns} pagination={false} bordered />
         </div>
         <div className="table-item">
           <div className="table-item__title">历史数据</div>
-          <Table rowKey={record => record.classInfo.id} dataSource={historyLessonsList} columns={columns} pagination={false} bordered />
+          <Table 
+            onRow={this.onRow}
+            rowKey={record => record.classInfo.id} dataSource={historyLessonsList} columns={columns} pagination={false} bordered />
         </div>
       </div>
     )

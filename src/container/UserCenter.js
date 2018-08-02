@@ -10,7 +10,7 @@ import lessonActions from '../actions/lesson'
 
 class UserCenter extends Component {
   componentDidMount() {
-    const mid = 33090002
+    const mid = this.props.params.mid
     const { userActions, lessonActions } = this.props
     userActions.fetchUserInfo({ mid })
     lessonActions.fetchLessonInfo({ mid })
@@ -41,10 +41,11 @@ const mapStateToProps = (state, ownProps) => {
     lessonInfo,
     satisfied
   } = state
+  const mid = ownProps.params.mid
   return {
     userInfo,
     lessonInfo,
-    satisfiedInfo: satisfied[33090002]
+    satisfiedInfo: satisfied[mid]
   }
 }
 
