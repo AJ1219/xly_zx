@@ -4,7 +4,7 @@ import ActionTypes from '../const/ActionTypes'
 function basicInfo(state={}, action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_CLASS_INFO}_SUC`:
-      return { ...state, [action.classId]: action.response.data.basic_info }
+      return { ...state, [action.classId]: { ...action.response.data.basic_info } }
     default:
       return state
   }
@@ -12,7 +12,7 @@ function basicInfo(state={}, action) {
 function lessonList(state={}, action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_CLASS_INFO}_SUC`:
-      return { ...state, [action.classId]: action.response.data.list }
+      return { ...state, [action.classId]: [ ...action.response.data.list ] }
     default:
       return state
   }

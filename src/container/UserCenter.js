@@ -19,15 +19,20 @@ class UserCenter extends Component {
   render() {
     const { 
       userInfo, 
-      lessonInfo,
-      satisfiedInfo
+      currentLessonsList,
+      historyLessonsList,
+      satisfiedInfo,
+      lessonActions
     } = this.props
+    const mid = this.props.params.mid
     return (
       <div>
         <UserInfoBox userInfo={userInfo} />
         <OpTabs 
-          userInfo={userInfo} 
-          lessonInfo={lessonInfo}
+          userInfo={userInfo}
+          lessonActions={lessonActions} 
+          currentLessonsList={currentLessonsList}
+          historyLessonsList={historyLessonsList}
           satisfiedInfo={satisfiedInfo}
         />
       </div>
@@ -38,13 +43,17 @@ class UserCenter extends Component {
 const mapStateToProps = (state, ownProps) => {
   const {
     userInfo,
-    lessonInfo,
+    lessonInfo: {
+      currentLessonsList,
+      historyLessonsList
+    },
     satisfied
   } = state
   const mid = ownProps.params.mid
   return {
-    userInfo,
-    lessonInfo,
+    userInfo: userInfo[mid] || {},
+    currentLessonsList: currentLessonsList[mid],
+    historyLessonsList: historyLessonsList[mid],
     satisfiedInfo: satisfied[mid]
   }
 }

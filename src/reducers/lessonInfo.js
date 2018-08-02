@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux'
 import ActionTypes from '../const/ActionTypes'
 
-function currentLessonsList(state = [], action) {
+function currentLessonsList(state = {}, action) {
   switch(action.type){
     case `${ActionTypes.FETCH_LESSON_INFO}_SUC`:
-      return [ ...action.response.data.currentLessonsList ]
+      return { ...state, [action.mid]: [ ...action.response.data.currentLessonsList ] }
       
     default:
       return state
   }
 }
-function historyLessonsList(state = [], action) {
+function historyLessonsList(state = {}, action) {
   switch(action.type){
     case `${ActionTypes.FETCH_LESSON_INFO}_SUC`:
-      return [ ...action.response.data.historyLessonsList ]
+      return { ...state, [action.mid]: [ ...action.response.data.historyLessonsList ] }
     default:
       return state
   }

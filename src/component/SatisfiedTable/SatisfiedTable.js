@@ -3,8 +3,12 @@ import { Table } from 'antd'
 import Styles from './SatisfiedTable.css'
 
 class SatisfiedTable extends Component { 
-  handleReply = () => {
-
+  handleReply = (record, index) => {
+    const { lessonActions, userInfo } = this.props
+    lessonActions.replyUserFeedBack({
+      mid: userInfo.mid, 
+      lessonIndex: index
+    })
   }
   render() {
     const { list } = this.props
@@ -37,8 +41,8 @@ class SatisfiedTable extends Component {
       title: '操作',
       dataIndex: 'reply_status',
       align: 'center',
-      render: info => {
-        return <span onClick={this.handleReply}>{info === 1 ? '已回复' : '✉️回复'}</span>
+      render: (info, record, index) => {
+        return <span onClick={this.handleReply.bind(this, record, index)}>{info === 1 ? '已回复' : '✉️回复'}</span>
       }
     }];
     return (

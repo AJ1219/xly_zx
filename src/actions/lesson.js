@@ -9,7 +9,8 @@ export default {
         params: {
           mid: params.mid
         }
-      }
+      },
+      mid: params.mid
     }
   },
   fetchLessonSatisfiedInfo: (params) => {
@@ -22,6 +23,13 @@ export default {
         }
       },
       mid: params.mid
+    }
+  },
+  replyUserFeedBack: (params) => {
+    const { mid, lessonIndex } = params
+    return {
+      type: ActionTypes.REPLY_USER_FEED_BACK,
+      params: { mid, lessonIndex }
     }
   }
 }

@@ -9,7 +9,8 @@ export default {
         params: {
           mid: params.mid
         }
-      }
+      },
+      mid: params.mid
     }
   },
   fetchStudentList: (params) => {
