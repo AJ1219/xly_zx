@@ -6,10 +6,7 @@ class StudentTable extends Component {
   onRow = (record) => {
     const router = this.props.router
     return {
-      onClick: (e) => {
-        console.log(record.mid)
-        console.log(e)
-        console.log(e.target)
+      onClick: e => {
         browserHistory.push(`/userCenter/${record.mid}`)
       },
     };

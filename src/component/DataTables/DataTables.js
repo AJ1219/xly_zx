@@ -1,16 +1,27 @@
 import React, { Component } from 'react'
-import { Table } from 'antd'
+import { Table, Icon, Popover, Button } from 'antd'
 import './DataTables.css'
 import { browserHistory } from 'react-router';
 
 class DataTables extends Component {
   onRow = (record) => {
-    const router = this.props.router
     return {
       onClick: (e) => {
         browserHistory.push(`/classDetail/${record.classInfo.id}`)
       },
     };
+  }
+  handleStopBubble = e => {
+    e.stopPropagation();
+  }
+  renderPopoverContent = (record) => {
+    return (
+      <div>
+        { Object.keys(record.teacherInfo).map(key => (
+          <span className="marginRight20">{`${key}: ${record.teacherInfo[key]}`}</span>
+        )) }
+      </div>
+    )
   }
   renderRate = (info, type) => {
     let className
@@ -64,6 +75,13 @@ class DataTables extends Component {
     }, {
       title: '老师',
       dataIndex: 'teacherInfo.nick',
+      render: (text, record) => (
+        <span>
+          <Popover title="老师信息" content={this.renderPopoverContent(record)} trigger="click" onClick={this.handleStopBubble}>
+            <Icon type="profile" />
+          </Popover>&nbsp;{text}
+        </span>
+      )
     }, {
       title: '上课率',
       dataIndex: 'enterRate',
