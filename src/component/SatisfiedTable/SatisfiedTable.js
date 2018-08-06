@@ -17,7 +17,7 @@ class SatisfiedTable extends Component {
     return (
       <div>
         { Object.keys(record.teacher_info).map(key => (
-          <span className="marginRight20">{`${key}: ${record.teacher_info[key]}`}</span>
+          <span key={key} className="marginRight20">{`${key}: ${record.teacher_info[key]}`}</span>
         )) }
       </div>
     )

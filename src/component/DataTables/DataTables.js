@@ -18,7 +18,7 @@ class DataTables extends Component {
     return (
       <div>
         { Object.keys(record.teacherInfo).map(key => (
-          <span className="marginRight20">{`${key}: ${record.teacherInfo[key]}`}</span>
+          <span key={key} className="marginRight20">{`${key}: ${record.teacherInfo[key]}`}</span>
         )) }
       </div>
     )
@@ -120,13 +120,20 @@ class DataTables extends Component {
           <Table 
             onRow={this.onRow}
             rowKey={record => record.classInfo.id} 
-            dataSource={currentLessonsList} columns={columns} pagination={false} bordered />
+            dataSource={currentLessonsList} 
+            columns={columns} 
+            pagination={false} 
+            bordered />
         </div>
         <div className="table-item">
           <div className="table-item__title">历史数据</div>
           <Table 
             onRow={this.onRow}
-            rowKey={record => record.classInfo.id} dataSource={historyLessonsList} columns={columns} pagination={false} bordered />
+            rowKey={record => record.classInfo.id} 
+            dataSource={historyLessonsList} 
+            columns={columns} 
+            pagination={false} 
+            bordered />
         </div>
       </div>
     )
