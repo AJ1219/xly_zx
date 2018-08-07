@@ -1,4 +1,6 @@
 import ActionTypes from '../const/ActionTypes'
+import { normalize } from 'normalizr'
+import { SatisfySchema } from '../schemas'
 
 export default {
   fetchLessonInfo: (params) => {
@@ -20,16 +22,17 @@ export default {
         endpoint: '/getSatisfiledList',
         params: {
           mid: params.mid
-        }
+        },
+        normalizeFunc: json => normalize(json.data.list, SatisfySchema.SATISFYLIST)
       },
       mid: params.mid
     }
   },
   replyUserFeedBack: (params) => {
-    const { mid, lessonIndex } = params
+    const { mid, lessonIndex, time } = params
     return {
       type: ActionTypes.REPLY_USER_FEED_BACK,
-      params: { mid, lessonIndex }
+      params: { mid, lessonIndex, time }
     }
   }
 }

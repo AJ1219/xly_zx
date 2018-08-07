@@ -10,6 +10,7 @@ const TabPane = Tabs.TabPane;
 class OpTabs extends Component {
   render() {
     const { 
+      entities,
       userInfo,
       currentLessonsList,
       historyLessonsList,
@@ -23,11 +24,11 @@ class OpTabs extends Component {
       <Tabs tabBarStyle={{padding: '0 20px'}} defaultActiveKey="1" onChange={null}>
         <TabPane className="tab-pane" tab="课程信息" key='1'>
           <ButtonGroup customButtons={learningLesson}/>
-          <DataTables lessonInfo={{currentLessonsList, historyLessonsList}} />
+          <DataTables entities={entities} lessonInfo={{currentLessonsList, historyLessonsList}} />
         </TabPane>
         <TabPane className="tab-pane" tab="满意度反馈" key='2'>
           <ButtonGroup customButtons={learningLesson}/>
-          <SatisfiedTable list={satisfiedInfo} lessonActions={lessonActions} userInfo={userInfo}/>
+          <SatisfiedTable entities={entities} list={satisfiedInfo} lessonActions={lessonActions} userInfo={userInfo}/>
         </TabPane>
       </Tabs>
     )

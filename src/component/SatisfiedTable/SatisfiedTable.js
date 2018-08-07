@@ -51,10 +51,11 @@ class SatisfiedTable extends Component {
     }
   ];
   handleReply = (attr) => {
-    const { index } = attr;
+    const { index, record } = attr;
     const { lessonActions, userInfo } = this.props
     lessonActions.replyUserFeedBack({
       mid: userInfo.mid, 
+      time: record.time,
       lessonIndex: index
     })
   }
@@ -74,12 +75,20 @@ class SatisfiedTable extends Component {
   rowKey = record => record.class_info.id
 
   render() {
-    const { list } = this.props
+    const { list, entities } = this.props;
+    const newList = list && list.map(t => {
+      const item = entities.satisfyEntity[t]
+      return {
+        ...item,
+        class_info: entities.classEntity[item.class_info],
+        teacher_info: entities.teacherEntity[item.teacher_info],
+      }
+    });
     return (
       <div className="table-wrapper">
         <Table 
           rowKey={this.rowKey} 
-          dataSource={list} 
+          dataSource={newList} 
           columns={this.columns} 
           pagination={false}
           bordered

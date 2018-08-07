@@ -35,7 +35,8 @@ const serverApi = store => next => action => {
   const {
     type,
     endpoint,
-    params
+    params,
+    normalizeFunc
   } = action.SERVER_API;
 
   if (typeof endpoint !== 'string') {
@@ -64,7 +65,7 @@ const serverApi = store => next => action => {
     next(actionWith({
       type: `${type}_SUC`,
       __api:{endpoint,params},
-      response: res.data
+      response: typeof (normalizeFunc) !== 'undefined' ? normalizeFunc(res.data) : res.data
     }));
   })
   .catch(errMsg => {
