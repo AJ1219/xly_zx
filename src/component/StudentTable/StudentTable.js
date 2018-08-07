@@ -15,7 +15,7 @@ const columns = [
     dataIndex: 'nick',
     align: 'center',
     render: info => (
-      <a href="javascript:;">{info}</a>
+      <a href="void(0)">{info}</a>
     )
   }, {
     title: '学员编号/MID',

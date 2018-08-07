@@ -27,12 +27,6 @@ const classItemSchema = new schema.Entity('classItemEntity', {
 }, {
   idAttribute: 'id'
 }); // 两个表格用得到的课程中型数据库
-const lessonInfoSchema = new schema.Entity('lessonInfoEntity',{
-  class_info:classSchema,
-  teacher_info:teacherSchema
-},{
-  idAttribute:'time'
-}) // 班级上课大型数据库
 
 export const SatisfySchema = {
   SATISFYLIST: [ satisfySchema ]
