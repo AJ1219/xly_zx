@@ -1,6 +1,6 @@
 import ActionTypes from '../const/ActionTypes'
 import { normalize } from 'normalizr'
-import { SatisfySchema } from '../schemas'
+import { LessonSchema, SatisfySchema } from '../schemas'
 
 export default {
   fetchLessonInfo: (params) => {
@@ -10,6 +10,12 @@ export default {
         endpoint: '/getLessonInfo',
         params: {
           mid: params.mid
+        },
+        normalizeFunc:response=> {
+          return {
+            currentLessonsList: normalize(response.data.currentLessonsList, LessonSchema.LESSONINFO),
+            historyLessonsList: normalize(response.data.historyLessonsList, LessonSchema.LESSONINFO)
+          }
         }
       },
       mid: params.mid

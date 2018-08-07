@@ -43,11 +43,15 @@ const getAfterFilterList = (list, filter) => {
 }
 const mapStateToProps = state => {
   const {
+    entities: {
+      studentEntity
+    },
     studentLib: { 
-      list: studentList,
+      list: studentIds,
       filterOption
     }
   } = state
+  const studentList = studentIds.map(id => studentEntity[id])
   return {
     studentList: getAfterFilterList(studentList, filterOption)
   }

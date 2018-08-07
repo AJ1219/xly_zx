@@ -112,10 +112,30 @@ class DataTables extends Component {
   }
   
   render() {
-    const { lessonInfo: {
-      currentLessonsList,
-      historyLessonsList
-    } } = this.props
+    const { 
+      entities,
+      lessonInfo: {
+        currentLessonsList: currentLessonsIdxs,
+        historyLessonsList: historyLessonsIdxs
+      } 
+    } = this.props
+
+    const currentLessonsList = (currentLessonsIdxs || []).map(id => {
+      const classInfo = entities.classItemEntity[id]
+      return {
+        ...classInfo,
+        classInfo: entities.classEntity[classInfo.classInfo],
+        teacherInfo: entities.teacherEntity[classInfo.teacherInfo]
+      }
+    })
+    const historyLessonsList = (historyLessonsIdxs || []).map(id => {
+      const classInfo = entities.classItemEntity[id]
+      return {
+        ...classInfo,
+        classInfo: entities.classEntity[classInfo.classInfo],
+        teacherInfo: entities.teacherEntity[classInfo.teacherInfo]
+      }
+    })
     
     return (
       <div className="table-group">

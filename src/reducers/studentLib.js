@@ -5,7 +5,7 @@ function list(state = [], action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_STUDENT_LIST}_SUC`:
       return [ 
-        ...action.response.data
+        ...action.response.result
       ]
     default:
       return state

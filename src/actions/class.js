@@ -1,4 +1,6 @@
 import ActionTypes from '../const/ActionTypes'
+import { normalize } from 'normalizr'
+import { LessonSchema } from '../schemas'
 
 export default {
   fetchClassInfo: (params) => {
@@ -9,6 +11,12 @@ export default {
         endpoint: '/getClassInfo',
         params: {
           id: classId
+        },
+        normalizeFunc:response => {
+          return {
+            ...normalize(response.data.list, LessonSchema.LESSONLIST),
+            basic_info: response.data.basic_info
+          }
         }
       },
       classId

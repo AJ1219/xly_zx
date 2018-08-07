@@ -29,6 +29,9 @@ class ClassDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const {
+    entities: {
+      lessonEntity
+    },
     classesDetail: {
       basicInfo,
       lessonList
@@ -37,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
   const classId = ownProps.params.classId
   return {
     basicInfo: basicInfo[classId],
-    lessonList: lessonList[classId]  
+    lessonList: (lessonList[classId] || []).map(time => lessonEntity[time])
   }
 }
 
