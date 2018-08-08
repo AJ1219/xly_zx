@@ -1,0 +1,7 @@
+.imgList__photos {
+  /*display: flex;*/
+  border: 1px solid #000;
+}
+.imgList__photo {
+  width: 250px;
+}

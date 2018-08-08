@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Input, Select } from 'antd'
-import './StudentSearcher.css'
+import './OpSearcher.css'
 const InputGroup = Input.Group;
 const Option = Select.Option;
 const Search = Input.Search;
 
-class StudentSearcher extends Component {
+class OpSearcher extends Component {
   constructor(props) {
     super(props)
     const { options } = props
@@ -53,4 +53,4 @@ class StudentSearcher extends Component {
   }
 }
 
-export default StudentSearcher
+export default OpSearcher

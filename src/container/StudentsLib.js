@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import userActions from '../actions/user'
 import StudentTable from '../component/StudentTable/StudentTable'
-import StudentSearcher from '../component/StudentSearcher/StudentSearcher'
+import OpSearcher from '../component/OpSearcher/OpSearcher'
 
 class StudentsLib extends Component {
   componentDidMount() {
@@ -24,7 +24,7 @@ class StudentsLib extends Component {
     ]
     return (
       <div>
-        <StudentSearcher options={options} onSearch={userActions.searchStudentListByOption} />
+        <OpSearcher options={options} onSearch={userActions.searchStudentListByOption} />
         <StudentTable list={studentList} />
       </div>
     )

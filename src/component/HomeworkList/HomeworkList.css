@@ -1,0 +1,21 @@
+.homework-item {
+  display: flex;
+}
+.homework-item__photos {
+  /*display: flex;*/
+  border: 1px solid #000;
+  flex: 1
+}
+.homework-item__photo {
+  width: 250px;
+}
+.back-forbidden {
+  color: red
+}
+.comment-list {
+  width: 300px;
+  border: 1px solid #000;
+}
+.comment-item {
+  height: 200px;
+}

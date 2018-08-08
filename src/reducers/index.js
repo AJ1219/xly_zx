@@ -5,6 +5,7 @@ import ui from './ui'
 import studentLib from './studentLib'
 import classesDetail from './classesDetail'
 import satisfied from './satisfied'
+import homework from './homework'
 import entities from './entities'
 const rootReducer = combineReducers({
   lessonInfo,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   classesDetail,
   satisfied,
   ui,
-  entities
+  entities,
+  homework
 })
 export default rootReducer

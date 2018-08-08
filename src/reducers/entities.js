@@ -19,6 +19,7 @@ function classEntity (state = {},action){
   let entities
   switch(action.type){
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`:
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`:
       entities =  action.response.entities
       return {
         ...state,
@@ -51,6 +52,7 @@ function classItemEntity (state = {},action){
 function teacherEntity (state = {},action){
   switch(action.type){
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`:
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`:
       const entities =  action.response.entities
       return {
         ...state,
@@ -101,11 +103,55 @@ function satisfyEntity (state = {},action){
   }
 }
 
+
+function authorEntity (state = {},action){
+  switch(action.type){
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
+      const entities =  action.response.entities
+      return {
+        ...state,
+        ...entities.authorEntity
+      };
+    }
+    default:
+      return state;
+  }
+}
+function commentEntity (state = {},action){
+  switch(action.type){
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
+      const entities =  action.response.entities
+      return {
+        ...state,
+        ...entities.commentEntity
+      };
+    }
+    default:
+      return state;
+  }
+}
+function homeworkEntity (state = {},action){
+  switch(action.type){
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
+      const entities =  action.response.entities
+      return {
+        ...state,
+        ...entities.homeworkEntity
+      };
+    }
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   classEntity,
   teacherEntity,
   satisfyEntity,
   lessonEntity,
   classItemEntity,
-  studentEntity
+  studentEntity,
+  authorEntity,
+  commentEntity,
+  homeworkEntity
 });
