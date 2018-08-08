@@ -1,7 +1,22 @@
 .imgList__photos {
   /*display: flex;*/
-  border: 1px solid #000;
+  /*border: 1px solid #000;*/
+  height: 100%;
 }
 .imgList__photo {
-  width: 250px;
+  /*width: 250px;*/
+  height: 350px;
+  margin: 0 auto;
+}
+.ant-carousel .slick-slide div{
+  vertical-align: top;
+}
+.ant-carousel .slick-slide {
+  text-align: center;
+  /*background: #364d79;*/
+  overflow: hidden;
+}
+.imgslist-wrapper {
+  width: 100%;
+  height: 100%;
 }

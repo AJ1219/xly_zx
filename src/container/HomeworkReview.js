@@ -23,34 +23,22 @@ class HomeworkReview extends Component {
     ]
     const {
       entities,
-      homework
+      homework,
+      homeworkActions
     } = this.props
     return (
       <div>
-        <h1>tabBar</h1>
         <OpSearcher options={options} onSearch={null} />
-        <HomeworkTabs entities={entities} listLib={homework} />
+        <HomeworkTabs entities={entities} listLib={homework} homeworkActions={homeworkActions} />
       </div>
     )
   }
 }
-// const getAfterFilterList = (list, filter) => {
-//   if (!filter) return list
-//   const { keyName, value } = filter
-//   return list.filter(item => {
-//     console.log(item[keyName], value)
-//     if (`${item[keyName]}` === value || value === '') {
-//       return true
-//     }
-//     return false
-//   })
-// }
 const mapStateToProps = state => {
   const {
     entities,
     homework
   } = state
-  // const studentList = studentIds.map(id => studentEntity[id])
   return {
     entities,
     homework

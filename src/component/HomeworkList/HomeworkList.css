@@ -1,21 +1,17 @@
+.homework-list {
+  margin: 0 20px;
+}
 .homework-item {
   display: flex;
+  height: 500px;
 }
 .homework-item__photos {
-  /*display: flex;*/
-  border: 1px solid #000;
-  flex: 1
+  width: 1200px;
+  height: 350px;
 }
-.homework-item__photo {
-  width: 250px;
+.homework-info {
+  margin: 20px 0;
 }
-.back-forbidden {
-  color: red
-}
-.comment-list {
-  width: 300px;
-  border: 1px solid #000;
-}
-.comment-item {
-  height: 200px;
+.homework-info__item {
+  margin-right: 30px;
 }

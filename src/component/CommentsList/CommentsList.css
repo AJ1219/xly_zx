@@ -1,0 +1,30 @@
+.redColor {
+  color: red
+}
+.comment-list {
+  flex: 1;
+  height: 450px;
+  padding-left: 20px;
+  overflow-y: scroll;
+  border-left: 1px solid #eee;
+}
+.comment-item {
+  height: 150px;
+}
+
+.comment-header {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.comment-header__time,
+.comment-content__back {
+  float: right;
+}
+.comment-content {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.comment-footer {
+  overflow: hidden;
+  margin-bottom: 10px;
+}

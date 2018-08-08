@@ -14,5 +14,27 @@ export default {
       },
       params: { token, isReviewed }
     }
+  },
+  returnBackComment: (params) => {
+    const { commentId } = params
+    return {
+      type: ActionTypes.RETURN_BACK_HOMEWORK_COMMENT,
+      commentId
+    }
+  },
+  switchExcellent: (params) => {
+    const { id } = params
+    return {
+      type: ActionTypes.SWITCH_EXCELLENT_HOMEWORK,
+      id
+    }
+  },
+  publishComment: (params) => {
+    const { newCommentItem, id } = params
+    return {
+      type: ActionTypes.PUBLISH_COMMENT_TO_HOMEWORK,
+      newCommentItem,
+      id
+    }
   }
 }

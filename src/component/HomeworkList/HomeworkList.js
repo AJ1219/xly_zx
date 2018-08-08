@@ -1,71 +1,76 @@
 import React, { Component } from 'react'
-import { Tabs, Switch } from 'antd'
+import { Switch, List, Input } from 'antd'
 import './HomeworkList.css'
 import ImgsList from '../ImgsList/ImgsList'
-import {} from 'lodash'
+import CommentsList from '../CommentsList/CommentsList'
 import { formatUnixTime4YMDHM } from '../../common/utils'
-/*
-  author:1001
-  classInfo:78856
-  commentator:"小M老师"
-  comments:(3) [4000, 4001, 4002]
-  description:"拍摄一组静物"
-  id:"754"
-  isExcellent:true
-  photos:(5) [...]
-  status:"unrevised"
-  teacherInfo:76544({id: 76544, mid: "98676", nick: "小白老师", realName: "白帆", wxCode: "fgg"})
-  time:1533362538734
-*/
-
-const TabPane = Tabs.TabPane;
-
 class HomeworkList extends Component {
+  state = {
+    commentInp: ''
+  }
+  handleSwitchExcellentState = (itemInfo) => {
+    const targetId = itemInfo.id
+    const { homeworkActions } = this.props
+    homeworkActions.switchExcellent({ id: targetId })
+  }
+  handlePublishComment = (inp, itemInfo) => {
+    const id = itemInfo.id
+    const { homeworkActions } = this.props
+    const newCommentItem = {
+      commentator:{role: "带课老师", nick: "我"},
+      content:inp,
+      from:"teacher",
+      id:+new Date(),
+      nick:"小张老师",
+      status:"unrevised",
+      time:+new Date(),
+    }
+    homeworkActions.publishComment({ id, newCommentItem })
+    this.setState({commentInp: ''})
+  }
+  handleCommentInpChange = e => {
+    this.setState({commentInp: e.target.value})
+  }
   renderHomeworkInfo(itemInfo) {
     const { id, author, classInfo, commentator, description, isExcellent, teacherInfo, time } = itemInfo
     return (
-      <div>
+      <div className="homework-info">
         <div>
-          <span>{`NO.${id}`}</span>
-          <span>{`作业: ${description}`}</span>
-          <span>{`${author.nick} mid: ${author.mid} ${classInfo.name} | ${teacherInfo.nick} 点评人: ${commentator} 提交时间: ${time}`}</span>
-          <span>佳作<Switch checked={isExcellent} onChange={null} /></span>
+          <span className="homework-info__item">{`NO.${id}`}</span>
+          <span className="homework-info__item">{`作业: ${description}`}</span>
+          <span className="homework-info__item">{`${author.nick} mid: ${author.mid}`}</span>
+          <span className="homework-info__item">{`${classInfo.name} | ${teacherInfo.nick}`}</span> 
+          <span className="homework-info__item">{`点评人: ${commentator}`}</span>
+          <span className="homework-info__item">{`提交时间: ${time}`}</span>
+          <span className="homework-info__item">佳作&nbsp;<Switch checked={isExcellent} onChange={this.handleSwitchExcellentState.bind(null, itemInfo)} /></span>
         </div>
       </div>
     )
   }
-  renderCommentsList(comments) {
+  renderCommentInpBox(item) {
     return (
-      <div className="comment-list">
-        {comments.map(comment => {
-      // comment: {id: 4000, mid: 1001, nick: "小年糕", content: "这个我不会", time: 1533362538734, from: "author"}
-      // 老师的
-        // commentator:{role: "点评老师", nick: "小M老师"}
-        // content:"光影应该这样"
-        // from:"teacher"
-        // id:4001
-        // nick:"小白老师"
-        // reason:"点评太简单"
-        // status:"reject"
-        // time:1533362538734
-          const { id, mid, nick, content, time, from, commentator, reason } = comment
-          return (
-            <div className={`comment-item ${from === 'author' ? 'back-forbidden' : ''}`}>
-              <div>
-                { from === 'author' ? <span>{`${nick} mid: ${mid}`}</span> : <span>{`${nick} (${commentator.role} ${commentator.nick}) :`}</span> }
-                <span>{`${formatUnixTime4YMDHM(time)}`}</span>
-              </div>
-              <div>
-                { from === 'teacher' ? <span>{`${content}`}</span> : null }
-                { from === 'author' ? null : <span>退回</span> }
-              </div>
-              <div>
-                { reason ? <span>{`${reason}`}</span> : null }
-              </div>
-            </div>
-          )
-        })}
-      </div>
+      <Input.Search
+        placeholder="输入要点评的话"
+        onSearch={inp => {this.handlePublishComment(inp, item)}}
+        enterButton="回复"
+        value={this.state.commentInp}
+        onChange={this.handleCommentInpChange}
+      />
+    )
+  }
+  renderItem = (item) => {
+    const { homeworkActions } = this.props
+    return (
+      <List.Item
+        className="homework-item"
+        key={item.id}
+        extra={<CommentsList comments={item.comments} homeworkActions={homeworkActions} />}>
+        <div className="homework-item__photos">
+          <ImgsList list={item.photos} />
+          {this.renderHomeworkInfo(item)}
+          {this.renderCommentInpBox(item)}
+        </div>
+      </List.Item>
     )
   }
   render() {
@@ -79,7 +84,7 @@ class HomeworkList extends Component {
       },
       list
     } = this.props
-    return list.map(id => {
+    const fullList = list.map(id => {
       const item = homeworkEntity[id]
       const photos = item.photos
       const comments = item.comments.map(commentId => commentEntity[commentId])
@@ -87,18 +92,17 @@ class HomeworkList extends Component {
       const classInfo = classEntity[item.classInfo]
       const teacherInfo = teacherEntity[item.teacherInfo]
       const time = formatUnixTime4YMDHM(item.time)
-      const itemFullInfo = { ...item, photos, comments, author, classInfo, teacherInfo, time }
-      return (
-        <div className="homework-item">
-          <div className="homework-item__photos">
-            <ImgsList list={photos} />
-            {this.renderHomeworkInfo(itemFullInfo)}
-            {/*{this.renderCommentInpBox(comments)}*/}
-          </div>
-          {this.renderCommentsList(comments)}
-        </div>
-      )
+      return { ...item, photos, comments, author, classInfo, teacherInfo, time }
     })
+    return (
+      <List 
+        className="homework-list"
+        pagination={false}
+        dataSource={fullList}
+        renderItem={this.renderItem}
+        itemLayout="vertical"
+      />
+    )
   }
 }
 

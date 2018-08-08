@@ -118,6 +118,7 @@ function authorEntity (state = {},action){
   }
 }
 function commentEntity (state = {},action){
+  const newState = { ...state }
   switch(action.type){
     case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
       const entities =  action.response.entities
@@ -126,11 +127,22 @@ function commentEntity (state = {},action){
         ...entities.commentEntity
       };
     }
+    case `${ActionTypes.RETURN_BACK_HOMEWORK_COMMENT}`: {
+      newState[action.commentId].status = 'isReject'
+      newState[action.commentId].reason = '就是想删除'
+      return newState
+    }
+    case `${ActionTypes.PUBLISH_COMMENT_TO_HOMEWORK}`: {
+      newState[action.newCommentItem.id] = action.newCommentItem
+      return newState
+    }
+      
     default:
       return state;
   }
 }
 function homeworkEntity (state = {},action){
+  const newState = { ...state }
   switch(action.type){
     case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
       const entities =  action.response.entities
@@ -138,6 +150,14 @@ function homeworkEntity (state = {},action){
         ...state,
         ...entities.homeworkEntity
       };
+    }
+    case `${ActionTypes.SWITCH_EXCELLENT_HOMEWORK}`: {
+      newState[action.id].isExcellent = !newState[action.id].isExcellent
+      return newState
+    }
+    case `${ActionTypes.PUBLISH_COMMENT_TO_HOMEWORK}`: {
+      newState[action.id].comments.unshift(action.newCommentItem.id)
+      return newState
     }
     default:
       return state;

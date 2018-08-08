@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './ImgsList.css'
+import { Carousel } from 'antd'
 
 class ImgsList extends Component {
   render() {
@@ -7,11 +8,10 @@ class ImgsList extends Component {
       list
     } = this.props
     return (
-      <div className="imgList__photos">
-        { 
-          list.map(src => 
-            <img className="imgList__photo" src={src} />)
-        }
+      <div className="imgslist-wrapper">
+        <Carousel effect="fade" autoplay>
+          { list.map((src, index) => <div key={index}><img alt="student-homework" className="imgList__photo" src={src} /></div>) }
+        </Carousel>
       </div>
     )
   }
