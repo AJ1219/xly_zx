@@ -17,8 +17,8 @@ class HomeworkReview extends Component {
   render () {
     const options = [
       {
-        value: 'mid',
-        text: '根据mid搜索'
+        value: 'id',
+        text: '根据作业id搜索'
       }
     ]
     const {
@@ -28,7 +28,7 @@ class HomeworkReview extends Component {
     } = this.props
     return (
       <div>
-        <OpSearcher options={options} onSearch={null} />
+        <OpSearcher options={options} onSearch={homeworkActions.searchHomeworkListByOption} />
         <HomeworkTabs entities={entities} listLib={homework} homeworkActions={homeworkActions} />
       </div>
     )

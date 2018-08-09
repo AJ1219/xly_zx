@@ -36,5 +36,18 @@ export default {
       newCommentItem,
       id
     }
+  },
+  searchHomeworkListByOption: (params) => {
+    const { keyName, value } = params
+    return {
+      type: ActionTypes.SEARCH_HOMEWORK_LIST_BY_OPTION,
+      params: { keyName, value }
+    }
+  },
+  switchCurrentTab: (currentTabKey) => {
+    return {
+      type: ActionTypes.SWITCH_CURRENT_TAB,
+      currentTabKey
+    }
   }
 }
