@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import './ClassInfoBox.css'
+import React, { Component } from "react"
+import "./ClassInfoBox.css"
 
 class ClassInfoBox extends Component {
   render() {
     if (!this.props.data) return null
-    const { 
+    const {
       data: {
         id: classId,
         name: className,
@@ -18,7 +18,7 @@ class ClassInfoBox extends Component {
           id: virtualTeacherId,
           wx_code: virtualTeacherWxCode
         }
-      } 
+      }
     } = this.props
     return (
       <div className="class-info-list">

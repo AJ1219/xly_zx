@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
 
-import UserInfoBox from '../component/UserInfoBox/UserInfoBox'
-import OpTabs from '../component/OpTabs/OpTabs'
+import UserInfoBox from "../component/UserInfoBox/UserInfoBox"
+import OpTabs from "../component/OpTabs/OpTabs"
 
-import userActions from '../actions/user'
-import lessonActions from '../actions/lesson'
+import userActions from "../actions/user"
+import lessonActions from "../actions/lesson"
 
 class UserCenter extends Component {
   componentDidMount() {
-    const mid = this.props.params.mid
+    const { mid } = this.props.params
     const { userActions, lessonActions } = this.props
     userActions.fetchUserInfo({ mid })
     lessonActions.fetchLessonInfo({ mid })
     lessonActions.fetchLessonSatisfiedInfo({ mid })
   }
   render() {
-    const { 
+    const {
       entities,
-      userInfo, 
+      userInfo,
       currentLessonsList,
       historyLessonsList,
       satisfiedInfo,
@@ -29,10 +29,10 @@ class UserCenter extends Component {
     return (
       <div>
         <UserInfoBox userInfo={userInfo} />
-        <OpTabs 
+        <OpTabs
           entities={entities}
           userInfo={userInfo}
-          lessonActions={lessonActions} 
+          lessonActions={lessonActions}
           currentLessonsList={currentLessonsList}
           historyLessonsList={historyLessonsList}
           satisfiedInfo={satisfiedInfo}
@@ -52,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
     },
     satisfied
   } = state
-  const mid = ownProps.params.mid
+  const { mid } = ownProps.params
   return {
     entities,
     userInfo: userInfo[mid] || {},
@@ -62,13 +62,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    userActions: bindActionCreators(userActions, dispatch),
-    lessonActions: bindActionCreators(lessonActions, dispatch)
-  }
-}
-
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActions, dispatch),
+  lessonActions: bindActionCreators(lessonActions, dispatch)
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCenter)

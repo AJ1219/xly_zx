@@ -1,4 +1,4 @@
-import ActionTypes from '../const/ActionTypes'
+import ActionTypes from "../const/ActionTypes"
 
 function homework(state = {
   myNoReview: [],
@@ -6,11 +6,11 @@ function homework(state = {
   allNoReview: [],
   allHisReview: [],
   filterOption: {},
-  currentTabKey: 'myNoReview'
+  currentTabKey: "myNoReview"
 }, action) {
   let newState = { ...state }
-  switch(action.type){
-    case `${ActionTypes.FETCH_HOMEWORK}_SUC`:
+  switch (action.type) {
+    case `${ActionTypes.FETCH_HOMEWORK}_SUC`: {
       const { token, isReviewed } = action.params
       const response = action.response.result
       if (token === 1 && isReviewed === 1) {
@@ -18,19 +18,19 @@ function homework(state = {
           ...state,
           myHisReview: response
         }
-      } else 
+      } else
       if (token === 0 && isReviewed === 1) {
         newState = {
           ...state,
           allHisReview: response
         }
-      } else 
+      } else
       if (token === 1 && isReviewed === 0) {
         newState = {
           ...state,
           myNoReview: response
         }
-      } else 
+      } else
       if (token === 0 && isReviewed === 0) {
         newState = {
           ...state,
@@ -38,8 +38,9 @@ function homework(state = {
         }
       }
       return newState
+    }
 
-    case `${ActionTypes.SEARCH_HOMEWORK_LIST_BY_OPTION}`:  
+    case `${ActionTypes.SEARCH_HOMEWORK_LIST_BY_OPTION}`:
       return {
         ...state,
         filterOption: action.params
@@ -53,7 +54,7 @@ function homework(state = {
     case `${ActionTypes.PUBLISH_COMMENT_TO_HOMEWORK}`:
       // action.id
       // state.currentTabKey
-      if (state.currentTabKey === 'myNoReview' || state.currentTabKey === 'allNoReview') {
+      if (state.currentTabKey === "myNoReview" || state.currentTabKey === "allNoReview") {
         newState = {
           ...state,
           myNoReview: state.myNoReview.filter(id => id !== action.id),

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 
 class AppWrapper extends React.Component {
   render() {
@@ -7,8 +7,8 @@ class AppWrapper extends React.Component {
       <div>
         {children}
       </div>
-    );
+    )
   }
 }
 
-export default AppWrapper;
+export default AppWrapper

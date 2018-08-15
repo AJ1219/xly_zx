@@ -1,6 +1,6 @@
-import ActionTypes from '../const/ActionTypes'
+import ActionTypes from "../const/ActionTypes"
 
-function satisfied(state={}, action) {
+function satisfied(state = {}, action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`:
       return { ...state, [action.mid]: action.response.result }

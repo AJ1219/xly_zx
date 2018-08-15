@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux'
-import './App.css';
-import configureStore from './store/configureStore'
+import React, { Component } from "react"
+import { Provider } from "react-redux"
+import { Router, browserHistory } from "react-router"
+import "./App.css"
+import configureStore from "./store/configureStore"
 
-import { Router, browserHistory } from 'react-router'
-import routes from './routes'
+import routes from "./routes"
 
 const store = configureStore()
 class App extends Component {
@@ -13,8 +13,8 @@ class App extends Component {
       <Provider store={store}>
         <Router routes={routes} history={browserHistory} />
       </Provider>
-    );
+    )
   }
 }
 
-export default App;
+export default App

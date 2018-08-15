@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import homeworkActions from '../actions/homework'
-import OpSearcher from '../component/OpSearcher/OpSearcher'
-import HomeworkTabs from '../component/HomeworkTabs/HomeworkTabs'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import homeworkActions from "../actions/homework"
+import OpSearcher from "../component/OpSearcher/OpSearcher"
+import HomeworkTabs from "../component/HomeworkTabs/HomeworkTabs"
 
 
 class HomeworkReview extends Component {
@@ -14,11 +14,11 @@ class HomeworkReview extends Component {
     homeworkActions.fetchHomework({ token: 0, isReviewed: 1 })
     homeworkActions.fetchHomework({ token: 0, isReviewed: 0 })
   }
-  render () {
+  render() {
     const options = [
       {
-        value: 'id',
-        text: '根据作业id搜索'
+        value: "id",
+        text: "根据作业id搜索"
       }
     ]
     const {
@@ -44,11 +44,9 @@ const mapStateToProps = state => {
     homework
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    homeworkActions: bindActionCreators(homeworkActions, dispatch)
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  homeworkActions: bindActionCreators(homeworkActions, dispatch)
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeworkReview)

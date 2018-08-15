@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import './ImgsList.css'
-import { Carousel } from 'antd'
+import React, { Component } from "react"
+import { Carousel } from "antd"
+import "./ImgsList.css"
 
 class ImgsList extends Component {
   render() {
-    const { 
+    const {
       list
     } = this.props
     return (

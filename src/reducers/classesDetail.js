@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
-import ActionTypes from '../const/ActionTypes'
+import { combineReducers } from "redux"
+import ActionTypes from "../const/ActionTypes"
 
-function basicInfo(state={}, action) {
+function basicInfo(state = {}, action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_CLASS_INFO}_SUC`:
       return { ...state, [action.classId]: { ...action.response.basic_info } }
@@ -9,10 +9,10 @@ function basicInfo(state={}, action) {
       return state
   }
 }
-function lessonList(state={}, action) {
+function lessonList(state = {}, action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_CLASS_INFO}_SUC`:
-      return { ...state, [action.classId]: [ ...action.response.result ] }
+      return { ...state, [action.classId]: [...action.response.result] }
     default:
       return state
   }

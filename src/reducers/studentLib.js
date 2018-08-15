@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
-import ActionTypes from '../const/ActionTypes'
+import { combineReducers } from "redux"
+import ActionTypes from "../const/ActionTypes"
 
 function list(state = [], action) {
   switch (action.type) {
     case `${ActionTypes.FETCH_STUDENT_LIST}_SUC`:
-      return [ 
+      return [
         ...action.response.result
       ]
     default:

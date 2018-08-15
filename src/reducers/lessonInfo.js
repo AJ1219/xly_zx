@@ -1,19 +1,19 @@
-import { combineReducers } from 'redux'
-import ActionTypes from '../const/ActionTypes'
+import { combineReducers } from "redux"
+import ActionTypes from "../const/ActionTypes"
 
 function currentLessonsList(state = {}, action) {
-  switch(action.type){
+  switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_INFO}_SUC`:
-      return { ...state, [action.mid]: [ ...action.response.currentLessonsList.result ] }
-      
+      return { ...state, [action.mid]: [...action.response.currentLessonsList.result] }
+
     default:
       return state
   }
 }
 function historyLessonsList(state = {}, action) {
-  switch(action.type){
+  switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_INFO}_SUC`:
-      return { ...state, [action.mid]: [ ...action.response.historyLessonsList.result ] }
+      return { ...state, [action.mid]: [...action.response.historyLessonsList.result] }
     default:
       return state
   }

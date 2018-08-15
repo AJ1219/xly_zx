@@ -1,4 +1,4 @@
-import ActionTypes from '../const/ActionTypes'
+import ActionTypes from "../const/ActionTypes"
 
 function userInfo(state = {}, action) {
   switch (action.type) {

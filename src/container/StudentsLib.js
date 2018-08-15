@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import userActions from '../actions/user'
-import StudentTable from '../component/StudentTable/StudentTable'
-import OpSearcher from '../component/OpSearcher/OpSearcher'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import userActions from "../actions/user"
+import StudentTable from "../component/StudentTable/StudentTable"
+import OpSearcher from "../component/OpSearcher/OpSearcher"
 
 class StudentsLib extends Component {
   componentDidMount() {
     const { userActions } = this.props
     userActions.fetchStudentList()
   }
-  render () {
+  render() {
     const { studentList, userActions } = this.props
     const options = [
       {
-        value: 'mid',
-        text: '根据mid搜索'
+        value: "mid",
+        text: "根据mid搜索"
       },
       {
-        value: 'nick',
-        text: '根据名字搜索'
+        value: "nick",
+        text: "根据名字搜索"
       }
     ]
     return (
@@ -35,7 +35,7 @@ const getAfterFilterList = (list, filter) => {
   const { keyName, value } = filter
   return list.filter(item => {
     console.log(item[keyName], value)
-    if (`${item[keyName]}` === value || value === '') {
+    if (`${item[keyName]}` === value || value === "") {
       return true
     }
     return false
@@ -46,7 +46,7 @@ const mapStateToProps = state => {
     entities: {
       studentEntity
     },
-    studentLib: { 
+    studentLib: {
       list: studentIds,
       filterOption
     }
@@ -56,11 +56,9 @@ const mapStateToProps = state => {
     studentList: getAfterFilterList(studentList, filterOption)
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    userActions: bindActionCreators(userActions, dispatch)
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActions, dispatch)
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentsLib)

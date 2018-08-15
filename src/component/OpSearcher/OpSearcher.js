@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import { Input, Select } from 'antd'
-import './OpSearcher.css'
-const InputGroup = Input.Group;
-const Option = Select.Option;
-const Search = Input.Search;
+import React, { Component } from "react"
+import { Input, Select } from "antd"
+import "./OpSearcher.css"
+
+const InputGroup = Input.Group
+const { Option } = Select
+const { Search } = Input
 
 class OpSearcher extends Component {
   constructor(props) {
@@ -13,13 +14,13 @@ class OpSearcher extends Component {
       currentOptionValue: options[0].value
     }
   }
-  
+
   onSearch = value => {
     const { onSearch } = this.props
     const { currentOptionValue } = this.state
     console.log(value)
     onSearch({
-      keyName: currentOptionValue, 
+      keyName: currentOptionValue,
       value
     })
   }
@@ -41,12 +42,12 @@ class OpSearcher extends Component {
             enterButton
             onSearch={this.onSearch}
           />
-          {/*<Input style={{ width: '30%' }} defaultValue="input content" />*/}
-          {/*<Search
+          {/* <Input style={{ width: '30%' }} defaultValue="input content" /> */}
+          {/* <Search
             placeholder="input search text"
             onSearch={value => console.log(value)}
             style={{ width: 200 }}
-          />*/}
+          /> */}
         </InputGroup>
       </div>
     )

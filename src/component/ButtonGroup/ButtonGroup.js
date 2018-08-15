@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Button } from 'antd'
-import './ButtonGroup.css'
-import { browserHistory } from 'react-router';
+import React, { Component } from "react"
+import { Button } from "antd"
+import { browserHistory } from "react-router"
+import "./ButtonGroup.css"
 
 class ButtonGroup extends Component {
   handleReturn = () => {
