@@ -7,6 +7,7 @@ import classesDetail from "./classesDetail"
 import satisfied from "./satisfied"
 import homework from "./homework"
 import entities from "./entities"
+import game2048 from "./game2048"
 
 const rootReducer = combineReducers({
   lessonInfo,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   satisfied,
   ui,
   entities,
-  homework
+  homework,
+  game2048
 })
 export default rootReducer

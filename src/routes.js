@@ -1,3 +1,4 @@
+import Game2048 from "./container/Game2048"
 import UserCenter from "./container/UserCenter"
 import StudentsLib from "./container/StudentsLib"
 import ClassDetail from "./container/ClassDetail"
@@ -12,7 +13,8 @@ const routeConfig = {
     { path: "homeworkReview", component: HomeworkReview },
     { path: "studentsLib", component: StudentsLib },
     { path: "userCenter/:mid", component: UserCenter },
-    { path: "classDetail/:classId", component: ClassDetail }
+    { path: "classDetail/:classId", component: ClassDetail },
+    { path: "game2048", component: Game2048 }
   ]
 }
 
